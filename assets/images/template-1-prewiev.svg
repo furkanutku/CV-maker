@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- Arka plan -->
+  <rect width="300" height="200" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1"/>
+  
+  <!-- Başlık Alanı -->
+  <rect x="40" y="20" width="220" height="30" fill="#3498DB" rx="2" ry="2"/>
+  <rect x="90" y="60" width="120" height="5" fill="#95A5A6" rx="2" ry="2"/>
+  <rect x="60" y="70" width="180" height="5" fill="#95A5A6" rx="2" ry="2"/>
+  
+  <!-- Tecrübe Alanı -->
+  <rect x="40" y="90" width="70" height="10" fill="#2C3E50" rx="2" ry="2"/>
+  <rect x="40" y="110" width="220" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+  <rect x="40" y="120" width="220" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+  <rect x="40" y="130" width="180" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+  
+  <!-- Beceriler Alanı -->
+  <rect x="40" y="150" width="50" height="10" fill="#2C3E50" rx="2" ry="2"/>
+  <rect x="40" y="170" width="60" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+  <rect x="120" y="170" width="60" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+  <rect x="200" y="170" width="60" height="5" fill="#BDC3C7" rx="2" ry="2"/>
+</svg>

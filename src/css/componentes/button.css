@@ -1,0 +1,56 @@
+/**
+ * Buton Bileşenleri Stilleri
+ */
+
+ button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-prev {
+    background-color: #95a5a6;
+}
+
+.btn-prev:hover {
+    background-color: #7f8c8d;
+}
+
+.btn-next {
+    background-color: var(--primary-color);
+}
+
+.btn-add {
+    background-color: var(--success-color);
+    margin-top: 10px;
+}
+
+.btn-add:hover {
+    background-color: #27ae60;
+}
+
+.btn-remove {
+    background-color: var(--accent-color);
+    margin-left: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.btn-remove:hover {
+    background-color: #c0392b;
+}

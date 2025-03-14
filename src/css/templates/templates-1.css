@@ -1,0 +1,91 @@
+/**
+ * Modern Şablon (Template 1) Stilleri
+ */
+
+ .cv-template-1 {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.cv-template-1 .cv-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cv-template-1 .cv-header h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.cv-template-1 .cv-contact {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+.cv-template-1 .cv-section {
+    margin-bottom: 25px;
+}
+
+.cv-template-1 .cv-section-title {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.cv-template-1 .cv-sub-section {
+    margin-bottom: 20px;
+}
+
+.cv-template-1 .cv-sub-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cv-template-1 .cv-experience-item,
+.cv-template-1 .cv-education-item,
+.cv-template-1 .cv-project-item {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #eee;
+}
+
+.cv-template-1 .cv-experience-item:last-child,
+.cv-template-1 .cv-education-item:last-child,
+.cv-template-1 .cv-project-item:last-child {
+    border-bottom: none;
+}
+
+.cv-template-1 .cv-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.cv-template-1 .cv-item-title {
+    font-weight: bold;
+}
+
+.cv-template-1 .cv-item-date {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.cv-template-1 .cv-project-item h3 {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.cv-template-1 ul {
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.cv-template-1 li {
+    margin-bottom: 5px;
+}

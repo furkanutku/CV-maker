@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ücretsiz Özgeçmiş Oluşturun!</title>
+    <link rel="stylesheet" href="src/css/main.css">
+    <!-- PDF Oluşturma Kütüphaneleri -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Karşılama Sayfası -->
+    <div id="welcome-page" class="welcome-container">
+        <div class="welcome-content">
+            <div class="logo">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h1>Özgeçmiş Oluşturucu</h1>
+            <p class="welcome-subtitle">Profesyonel özgeçmişinizi dakikalar içinde hazırlayın</p>
+            <div class="welcome-features">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Hızlı ve Kolay</h3>
+                    <p>Birkaç dakika içinde profesyonel bir özgeçmiş oluşturun</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-palette"></i>
+                    <h3>Özelleştirilebilir</h3>
+                    <p>Renkleri ve şablonları kişiselleştirin</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-download"></i>
+                    <h3>Anında İndirme</h3>
+                    <p>Özgeçmişinizi PDF formatında alın</p>
+                </div>
+            </div>
+            <button id="start-cv-btn" class="welcome-btn">Özgeçmiş Oluşturmaya Başla</button>
+        </div>
+    </div>
+
+    <!-- Ana Uygulama Alanı -->
+    <div id="app-container" class="app-container hidden">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo" id="go-to-home">
+                    <i class="fas fa-file-alt"></i>
+                    <h1>Özgeçmiş Oluşturucu</h1>
+                </div>
+                <p class="subtitle">Profesyonel özgeçmişinizi dakikalar içinde hazırlayın</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="steps-container">
+                <div class="step active" data-section="personal-info">
+                    <i class="fas fa-user"></i>
+                    <span>Kişisel Bilgiler</span>
+                </div>
+                <div class="step" data-section="experience">
+                    <i class="fas fa-briefcase"></i>
+                    <span>İş Deneyimi</span>
+                </div>
+                <div class="step" data-section="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Eğitim</span>
+                </div>
+                <div class="step" data-section="skills">
+                    <i class="fas fa-star"></i>
+                    <span>Beceriler</span>
+                </div>
+                <div class="step" data-section="design">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>Tasarım</span>
+                </div>
+                <div class="step" data-section="preview">
+                    <i class="fas fa-eye"></i>
+                    <span>Önizleme</span>
+                </div>
+            </div>
+
+            <!-- Kişisel Bilgiler Formu -->
+            <div id="personal-info" class="form-section active">
+                <h2><i class="fas fa-user"></i> Kişisel Bilgiler</h2>
+                <div class="card-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Ad Soyad</label>
+                            <input type="text" id="fullName" placeholder="Örn: Ahmet Mutlu">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Unvan/Pozisyon</label>
+                            <input type="text" id="title" placeholder="Örn: Yazılım Geliştirici">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-posta Adresi</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" placeholder="Örn: ornek@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon Numarası</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="Örn: 555 123 4567">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adres</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <textarea id="address" rows="2" placeholder="Örn: Atatürk cd. Çiğdem mh. 45/7, Çankaya/Ankara"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthDate">Doğum Tarihi</label>
+                            <div class="input-with-icon date-picker">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" id="birthDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <div class="input-with-icon">
+                                <i class="fab fa-linkedin"></i>
+                                <input type="text" id="linkedin" placeholder="Örn: linkedin.com/in/kullaniciadi">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Web Sitesi/Portföy (Opsiyonel)</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-globe"></i>
+                            <input type="text" id="website" placeholder="Örn: website.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="summary">Özet/Profil Bilgisi</label>
+                        <textarea id="summary" rows="4" placeholder="Kendinizi kısaca tanıtın (2-3 cümle)"></textarea>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <div></div> <!-- Boş div, düzen için -->
+                    <button class="btn-next" data-next="experience">
+                        <span>Devam Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- İş Deneyimi Formu -->
+            <div id="experience" class="form-section">
+                <h2><i class="fas fa-briefcase"></i> İş Deneyimi</h2>
+                <div id="experience-container">
+                    <div class="dynamic-field card-form">
+                        <div class="dynamic-field-header">
+                            <h3>İş Deneyimi #1</h3>
+                            <button class="btn-remove-item" title="Bu deneyimi kaldır">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="jobTitle1">Pozisyon</label>
+                                <input type="text" id="jobTitle1" placeholder="Örn: Laboratuvar Teknikeri">
+                            </div>
+                            <div class="form-group">
+                                <label for="company1">Şirket Adı</label>
+                                <input type="text" id="company1" placeholder="Örn: XYZ Kimya A.Ş">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location1">Lokasyon</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="location1" placeholder="Örn: Ankara">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startDate1">Başlangıç Tarihi</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="month" id="startDate1" placeholder="Ocak 2009">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate1">Bitiş Tarihi</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="month" id="endDate1"placeholder="Eylül 2019">
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="currentJob1">
+                                    <label for="currentJob1">Şu anda burada çalışıyorum</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobDescription1">İş Tanımı ve Sorumluluklar</label>
+                            <textarea id="jobDescription1" rows="4" placeholder="Yaptığınız işleri ve sorumlulukları listeleyiniz"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="add-experience" class="btn-add">
+                    <i class="fas fa-plus"></i>
+                    <span>Yeni İş Deneyimi Ekle</span>
+                </button>
+                
+                <div class="btn-group">
+                    <button class="btn-prev" data-prev="personal-info">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Geri</span>
+                    </button>
+                    <button class="btn-next" data-next="education">
+                        <span>Devam Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Eğitim Formu -->
+            <div id="education" class="form-section">
+                <h2><i class="fas fa-graduation-cap"></i> Eğitim Bilgileri</h2>
+                <div id="education-container">
+                    <div class="dynamic-field card-form">
+                        <div class="dynamic-field-header">
+                            <h3>Eğitim #1</h3>
+                            <button class="btn-remove-item" title="Bu eğitimi kaldır">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="degree1">Eğitim Seviyesi/Diploma</label>
+                                <input type="text" id="degree1" placeholder="Örn: Lisans">
+                            </div>
+                            <div class="form-group">
+                                <label for="school1">Okul/Üniversite Adı</label>
+                                <input type="text" id="school1" placeholder="Örn: Atatürk Üniversitesi">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldOfStudy1">Bölüm</label>
+                            <input type="text" id="fieldOfStudy1" placeholder="Örn: Kimya Mühendisliği">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eduStartDate1">Başlangıç Tarihi</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="month" id="eduStartDate1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="eduEndDate1">Mezuniyet Tarihi</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="month" id="eduEndDate1">
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="currentEdu1">
+                                    <label for="currentEdu1">Şu anda öğrenciyim</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="eduDescription1">Eğitim Sürecindeki Önemli Projeler/Başarılar</label>
+                            <textarea id="eduDescription1" rows="3" placeholder="Eğitim sürecinizde yaptığınız önemli çalışmaları belirtiniz"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="add-education" class="btn-add">
+                    <i class="fas fa-plus"></i>
+                    <span>Yeni Eğitim Bilgisi Ekle</span>
+                </button>
+                
+                <div class="btn-group">
+                    <button class="btn-prev" data-prev="experience">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Geri</span>
+                    </button>
+                    <button class="btn-next" data-next="skills">
+                        <span>Devam Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Beceriler Formu -->
+            <div id="skills" class="form-section">
+                <h2><i class="fas fa-star"></i> Beceriler ve Yetkinlikler</h2>
+                
+                <div class="card-form">
+                    <div class="form-group">
+                        <h3><i class="fas fa-laptop-code"></i> Teknik Beceriler</h3>
+                        <p class="form-hint">En az 5 teknik beceri ekleyin. Becerinize göre seviyenizi seçin.</p>
+                        <div id="technical-skills-container">
+                            <div class="skills-input-area">
+                                <div class="skill-item">
+                                    <input type="text" id="technicalSkill1" placeholder="Örn: JavaScript">
+                                    <div class="rating" data-skill-id="1">
+                                        <div class="rating-dot" data-rating="1" title="Başlangıç"></div>
+                                        <div class="rating-dot" data-rating="2" title="Temel"></div>
+                                        <div class="rating-dot" data-rating="3" title="Orta"></div>
+                                        <div class="rating-dot" data-rating="4" title="İyi"></div>
+                                        <div class="rating-dot" data-rating="5" title="Uzman"></div>
+                                    </div>
+                                    <button class="btn-remove-skill" title="Bu beceriyi kaldır">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="add-technical-skill" class="btn-add-small">
+                            <i class="fas fa-plus"></i> Teknik Beceri Ekle
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3><i class="fas fa-users"></i> Kişisel Beceriler</h3>
+                        <p class="form-hint">En az 3 kişisel beceri ekleyin.</p>
+                        <div id="soft-skills-container" class="tags-input-container">
+                            <div class="tags-wrapper">
+                                <input type="text" id="softSkillInput" placeholder="Beceri yazın ve Enter'a basın">
+                                <div class="tags-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3><i class="fas fa-language"></i> Yabancı Diller</h3>
+                        <div id="languages-container">
+                            <div class="language-item">
+                                <input type="text" id="language1" placeholder="Örn: İngilizce">
+                                <select id="languageLevel1">
+                                    <option value="">Seviye Seçin</option>
+                                    <option value="A1">A1 - Başlangıç</option>
+                                    <option value="A2">A2 - Temel</option>
+                                    <option value="B1">B1 - Orta Altı</option>
+                                    <option value="B2">B2 - Orta</option>
+                                    <option value="C1">C1 - İleri</option>
+                                    <option value="C2">C2 - Anadil Seviyesi</option>
+                                </select>
+                                <button class="btn-remove-skill" title="Bu dili kaldır">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-language" class="btn-add-small">
+                            <i class="fas fa-plus"></i> Yabancı Dil Ekle
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3><i class="fas fa-certificate"></i> Sertifikalar</h3>
+                        <div id="certificates-container" class="tags-input-container">
+                            <div class="tags-wrapper">
+                                <input type="text" id="certificateInput" placeholder="Sertifika yazın ve Enter'a basın">
+                                <div class="tags-list"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3><i class="fas fa-project-diagram"></i> Projeler</h3>
+                        <div id="projects-container">
+                            <div class="dynamic-field project-card">
+                                <div class="dynamic-field-header">
+                                    <h3>Proje #1</h3>
+                                    <button class="btn-remove-item" title="Bu projeyi kaldır">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectTitle1">Proje Adı</label>
+                                    <input type="text" id="projectTitle1" placeholder="Örn: E-Ticaret Web Sitesi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectDescription1">Proje Açıklaması</label>
+                                    <textarea id="projectDescription1" rows="3" placeholder="Proje hakkında kısa bilgi"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectLink1">Proje Linki (Opsiyonel)</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-link"></i>
+                                        <input type="text" id="projectLink1" placeholder="Örn: github.com/kullaniciadi/proje">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="add-project" class="btn-add-small">
+                            <i class="fas fa-plus"></i> Proje Ekle
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn-prev" data-prev="education">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Geri</span>
+                    </button>
+                    <button class="btn-next" data-next="design">
+                        <span>Devam Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tasarım Formu -->
+            <div id="design" class="form-section">
+                <h2><i class="fas fa-paint-brush"></i> Özgeçmiş Tasarımı ve Kişiselleştirme</h2>
+                
+                <div class="card-form">
+                    <div class="form-group">
+                        <h3>Şablon Seçimi</h3>
+                        <div class="design-options">
+                            <div class="template-preview selected" data-template="template-1">
+                                <div class="template-preview-image">
+                                    <img src="assets/images/template-1-prewiev.svg" alt="Modern Şablon önizleme">
+                                </div>
+                                <div class="template-info">
+                                    <h3>Modern Şablon</h3>
+                                    <p>Temiz ve profesyonel tasarım</p>
+                                </div>
+                            </div>
+                            <div class="template-preview" data-template="template-2">
+                                <div class="template-preview-image">
+                                    <img src="assets/images/template-2-prewiev.svg" alt="İki Sütunlu Şablon önizleme">
+                                </div>
+                                <div class="template-info">
+                                    <h3>İki Sütunlu Şablon</h3>
+                                    <p>Yan sütunda önemli bilgiler</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row color-settings">
+                        <div class="form-group">
+                            <label for="primaryColor">Özgeçmiş Ana Rengi</label>
+                            <div class="color-picker">
+                                <span class="color-preview" id="primaryColorPreview"></span>
+                                <input type="color" id="primaryColor" value="#3498db">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="secondaryColor">Özgeçmiş İkincil Rengi</label>
+                            <div class="color-picker">
+                                <span class="color-preview" id="secondaryColorPreview"></span>
+                                <input type="color" id="secondaryColor" value="#2c3e50">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fontFamily">Font Ailesi</label>
+                            <div class="select-wrapper">
+                                <select id="fontFamily">
+                                    <option value="Arial, sans-serif">Arial</option>
+                                    <option value="'Helvetica Neue', Helvetica, sans-serif">Helvetica</option>
+                                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                                    <option value="Georgia, serif">Georgia</option>
+                                    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                                    <option value="Verdana, sans-serif">Verdana</option>
+                                    <option value="'Courier New', monospace">Courier New</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fontSize">Font Boyutu</label>
+                            <div class="select-wrapper">
+                                <select id="fontSize">
+                                    <option value="12px">Küçük</option>
+                                    <option value="14px" selected>Orta</option>
+                                    <option value="16px">Büyük</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn-prev" data-prev="skills">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Geri</span>
+                    </button>
+                    <button class="btn-next" data-next="preview">
+                        <span>Önizleme ve İndirme</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Önizleme ve İndirme -->
+            <div id="preview" class="form-section">
+                <h2><i class="fas fa-eye"></i> Özgeçmiş Önizleme ve İndirme</h2>
+                
+                <div class="preview-wrapper">
+                    <div id="preview-container">
+                        <!-- Dinamik olarak oluşturulacak CV önizlemesi -->
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn-prev" data-prev="design">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Geri</span>
+                    </button>
+                    <button id="generate-pdf" class="btn-download">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>PDF Oluştur ve İndir</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modülleri yükle -->
+    <script type="module" src="src/js/app.js"></script>
+</body>
+</html>
